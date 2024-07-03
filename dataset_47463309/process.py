@@ -231,6 +231,7 @@ def create_reaction(reaction_record) -> Reaction:
             (see Supplementary Fig. 6).
             """
             # TODO this seems the wrong place... especially the pre-mix step
+            #  alternative --> conditions
         )
     )
 
