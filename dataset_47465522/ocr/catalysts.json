@@ -1,0 +1,98 @@
+[
+  {
+    "name": "cataCXium A Pd G3",
+    "smiles": "CS(=O)(=O)O[Pd]c1ccccc1-c2ccccc2N.CCCCP([C@@]34C[C@@H]5C[C@@H](C[C@@H](C5)C3)C4)[C@@]67C[C@@H]8C[C@@H](C[C@@H](C8)C6)C7"
+  },
+  {
+    "name": "BrettPhos Pd G3",
+    "smiles": "CS(=O)(O[Pd]c1c(c2c(N)cccc2)cccc1)=O.COc3c(P(C4CCCCC4)C5CCCCC5)c(c6c(C(C)C)cc(C(C)C)cc6C(C)C)c(OC)cc3"
+  },
+  {
+    "name": "RuPhos Pd G3",
+    "smiles": "CS(=O)(=O)O[Pd]c1ccccc1-c2ccccc2N.CC(C)Oc3cccc(OC(C)C)c3-c4ccccc4P(C5CCCCC5)C6CCCCC6"
+  },
+  {
+    "name": "XPhos Pd G3",
+    "smiles": "CC(C1=CC(C(C)C)=C(C2=CC=CC=C2P(C3CCCCC3)C4CCCCC4)C(C(C)C)=C1)C.NC5=C(C=CC=C5)C6=C(C=CC=C6)[Pd]OS(C)(=O)=O"
+  },
+  {
+    "name": "4MetBuXPhos Pd G3",
+    "smiles": "O=S(=O)([O-][Pd+2]1([C-]=2C=CC=CC2C=3C=CC=CC3[NH2]1)[P](C4=C(C=5C(=CC(=CC5C(C)C)C(C)C)C(C)C)C(=C(C(=C4C)C)C)C)(C(C)(C)C)C(C)(C)C)C"
+  },
+  {
+    "name": "P(t-Bu)3 Pd G4",
+    "smiles": "O=S(=O)([O-][Pd+2]1([C-]=2C=CC=CC2C=3C=CC=CC3[NH]1C)[P](C(C)(C)C)(C(C)(C)C)C(C)(C)C)C"
+  },
+  {
+    "name": "SPhos Pd G3",
+    "smiles": "CS(=O)(=O)O[Pd]c1ccccc1-c2ccccc2N.COc3cccc(OC)c3-c4ccccc4P(C5CCCCC5)C6CCCCC6"
+  },
+  {
+    "name": "BrettPhos Pd G3",
+    "smiles": "CS(=O)(O[Pd]c1c(c2c(N)cccc2)cccc1)=O.COc3c(P(C4CCCCC4)C5CCCCC5)c(c6c(C(C)C)cc(C(C)C)cc6C(C)C)c(OC)cc3"
+  },
+  {
+    "name": "RuPhos Pd G3",
+    "smiles": "CS(=O)(=O)O[Pd]c1ccccc1-c2ccccc2N.CC(C)Oc3cccc(OC(C)C)c3-c4ccccc4P(C5CCCCC5)C6CCCCC6"
+  },
+  {
+    "name": "tBuXPhos Pd G3",
+    "smiles": "CS(=O)(=O)O[Pd]c1ccccc1-c2ccccc2N.CC(C)c3cc(C(C)C)c(c(c3)C(C)C)-c4ccccc4P(C(C)(C)C)C(C)(C)C"
+  },
+  {
+    "name": "4MetBuXPhos Pd G3",
+    "smiles": "O=S(=O)([O-][Pd+2]1([C-]=2C=CC=CC2C=3C=CC=CC3[NH2]1)[P](C4=C(C=5C(=CC(=CC5C(C)C)C(C)C)C(C)C)C(=C(C(=C4C)C)C)C)(C(C)(C)C)C(C)(C)C)C"
+  },
+  {
+    "name": "P(t-Bu)3 Pd G4",
+    "smiles": "O=S(=O)([O-][Pd+2]1([C-]=2C=CC=CC2C=3C=CC=CC3[NH]1C)[P](C(C)(C)C)(C(C)(C)C)C(C)(C)C)C"
+  },
+  {
+    "name": "P(Cy3) Pd G3",
+    "smiles": "CS(=O)(=O)O[Pd]c1ccccc1-c2ccccc2N.C3CCC(CC3)P(C4CCCCC4)C5CCCCC5"
+  },
+  {
+    "name": "PEPPSI-IPr",
+    "smiles": "Cl[Pd]Cl.Clc1cccnc1.CC(C)c2cccc(C(C)C)c2N3CN(C=C3)c4c(cccc4C(C)C)C(C)C"
+  },
+  {
+    "name": "PEPPSI-SIPr",
+    "smiles": "Cl[Pd]Cl.Clc1cccnc1.CC(C)c2cccc(C(C)C)c2N3[CH]N(CC3)c4c(cccc4C(C)C)C(C)C"
+  },
+  {
+    "name": "(o-tol)3P Pd G3",
+    "smiles": "O=S(=O)([O-][Pd+2]1([C-]=2C=CC=CC2C=3C=CC=CC3[NH2]1)[P](C=4C=CC=CC4C)(C=5C=CC=CC5C)C=6C=CC=CC6C)C"
+  },
+  {
+    "name": "CyJohnPhos Pd G3",
+    "smiles": "O=S(=O)([O-][Pd+2]1([C-]=2C=CC=CC2C=3C=CC=CC3[NH2]1)[P](C=4C=CC=CC4C=5C=CC=CC5)(C6CCCCC6)C7CCCCC7)C"
+  },
+  {
+    "name": "Pd(dppb)Cl2",
+    "smiles": "Cl[Pd]Cl.C(CCP(c1ccccc1)c2ccccc2)CP(c3ccccc3)c4ccccc4"
+  },
+  {
+    "name": "tBuBrettPhos Pd G3",
+    "smiles": "COC1=CC=C(C(P(C(C)(C)C)C(C)(C)C)=C1C2=C(C=C(C=C2C(C)C)C(C)C)C(C)C)OC.NC3=C(C=CC=C3)C4=C(C=CC=C4)[Pd]OS(C)(=O)=O"
+  },
+  {
+    "name": "AdBrettPhos Pd G3",
+    "smiles": "COC1=CC=C(OC)C(C2=C(C(C)C)C=C(C(C)C)C=C2C(C)C)=C1P([C@]34C[C@H]5C[C@H](C[C@H](C5)C4)C3)[C@@]6(C[C@H](C7)C8)CC7C[C@H]8C6.NC9=CC=CC=C9C%10=CC=CC=C%10[Pd]OS(C)(=O)=O"
+  },
+  {
+    "name": "RockPhos Pd G3",
+    "smiles": "CC1=CC=C(OC)C(P(C(C)(C)C)C(C)(C)C)=C1C2=C(C(C)C)C=C(C(C)C)C=C2C(C)C.NC3=CC=CC=C3C4=CC=CC=C4[Pd]OS(C)(=O)=O"
+  },
+  {
+    "name": "SL-J009-1 Pd G3",
+    "smiles": "NC1=C(C=CC=C1)C2=C([Pd]OS(C)(=O)=O)C=CC=C2.C[C@@H](P(C(C)(C)C)C(C)(C)C)[C]3[C](P(C4CCCCC4)C5CCCCC5)[C][C][C]3.[C]6[C][C][C][C]6.[Fe]"
+  },
+  {
+    "name": "DTBPF-Pd-G3",
+    "smiles": "CS(=O)(=O)O[Pd]c1ccccc1-c1ccccc1N.CC(C)(C)P([C]1[CH][CH][CH][CH]1)C(C)(C)C.CC(C)(C)P([C]2[CH][CH][CH][CH]2)C(C)(C)C"
+  },
+  {
+    "name": "XantPhos Pd G3",
+    "smiles": "CS(=O)(=O)O[Pd]c1ccccc1-c2ccccc2N.CC3(C)c4cccc(P(c5ccccc5)c6ccccc6)c4Oc7c(cccc37)P(c8ccccc8)c9ccccc9"
+  }
+]
