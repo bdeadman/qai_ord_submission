@@ -133,7 +133,6 @@ def build_reaction(plate_row: str, plate_col_idx: int, corrp_std_4dot1: float, c
         ],
         addition_order=3,
         texture=Texture(type=Texture.TextureType.LIQUID),
-
     )
 
     reaction_input_3 = ReactionInput(
@@ -184,15 +183,29 @@ def build_reaction(plate_row: str, plate_col_idx: int, corrp_std_4dot1: float, c
             details="""
             Sealed 24-well metal heating blocks
             """
-        )
+        ),
     )
     # TODO how to represent preparation mix in glove box?
     # TODO how to represent sealed vial?
-    # TODO heater is a "heated tumble stirrer", where to put this?
 
     # reaction conditions
     reaction_conditions = ReactionConditions(
-        temperature=TemperatureConditions(setpoint=Temperature(value=100, units=Temperature.TemperatureUnit.CELSIUS)),
+        temperature=TemperatureConditions(
+            setpoint=Temperature(
+                value=100,
+                units=Temperature.TemperatureUnit.CELSIUS
+            ),
+            control=TemperatureConditions.TemperatureControl(
+                type=TemperatureConditions.TemperatureControl.TemperatureControlType.CUSTOM,
+                details="heated tumble stirrer"
+            )
+        ),
+        pressure=PressureConditions(
+            control=PressureConditions.PressureControl(
+                type=PressureConditions.PressureControl.PressureControlType.SEALED,
+                details="Sealed 24-well metal heating blocks"
+            )
+        ),
         conditions_are_dynamic=False,
     )
 
@@ -343,6 +356,16 @@ def build_reaction(plate_row: str, plate_col_idx: int, corrp_std_4dot1: float, c
         }
     )
 
+    notes = ReactionNotes(
+        procedure_details="""
+        - reaction input `pd_catalyst` was added as a solution and then the solvent was removed to leave 
+        solid solute before adding other reactants/reagents.
+        - stirrer was added after `pd_catalyst` and before `base`
+        - reaction inputs were prepared inside a glove box but the reaction itself did not happen in a glove box
+        - the reaction vial was sealed after adding all reaction inputs
+        """
+    )
+
     reaction = Reaction(
         identifiers=reaction_identifiers,
         inputs={
@@ -353,6 +376,7 @@ def build_reaction(plate_row: str, plate_col_idx: int, corrp_std_4dot1: float, c
             "base": reaction_input_base,
         },
         setup=reaction_setup,
+        notes=notes,
         conditions=reaction_conditions,
         workups=reaction_workups,
         outcomes=[outcome],
