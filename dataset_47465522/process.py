@@ -358,8 +358,8 @@ def build_reaction(plate_row: str, plate_col_idx: int, corrp_std_4dot1: float, c
 
     notes = ReactionNotes(
         procedure_details="""
-        - reaction input `pd_catalyst` was added as a solution and then the solvent was removed to leave 
-        solid solute before adding other reactants/reagents.
+        - reaction input `pd_catalyst` was added as a solution (2-methyltetrahydrofuran 1 mmol/L) 
+          and then the solvent was removed to leave solid solute before adding other reactants/reagents.
         - stirrer was added after `pd_catalyst` and before `base`
         - reaction inputs were prepared inside a glove box but the reaction itself did not happen in a glove box
         - the reaction vial was sealed after adding all reaction inputs
