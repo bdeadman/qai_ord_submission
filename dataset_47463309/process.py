@@ -28,6 +28,12 @@ RXN_R = AllChem.ReactionFromSmarts(REACTION_SMARTS_R)
 RXN_S = AllChem.ReactionFromSmarts(REACTION_SMARTS_S)
 
 
+def str2percentage(s: str) -> Percentage:
+    assert s.endswith("%")
+    if s.startswith("--"):
+        s = s.replace("--", "")
+    return Percentage(value=float(s.strip("%")))
+
 def get_reaction_smiles(p_smi, s_smi, l_smi):
     product_s_mol = RXN_S.RunReactants([MolFromSmiles(COMPOUND_3B_SMILES), MolFromSmiles(s_smi)])[0][0]
     product_s_smi = MolToSmiles(product_s_mol)
@@ -120,8 +126,7 @@ def create_reaction(reaction_record) -> Reaction:
             ),
             build_compound(
                 smi=COMPOUND_SOLVENT_SMILES,
-                amount=Amount(volume=Volume(units=Volume.VolumeUnit.MICROLITER, value=25)),
-                # TODO how do I know how much solvent is there if it was added as a component of a stock solution?
+                amount=Amount(volume=Volume(units=Volume.VolumeUnit.MICROLITER, value=25), volume_includes_solutes=True),
                 role=ReactionRole.ReactionRoleType.SOLVENT,
             ),
         ],
@@ -222,28 +227,33 @@ def create_reaction(reaction_record) -> Reaction:
             ]
         ),
         is_automated=True,
-        environment=ReactionSetup.ReactionEnvironment(
-            type=ReactionSetup.ReactionEnvironment.ReactionEnvironmentType.CUSTOM,
-            details="""
-            After placing the 96-well plates in ultrasonic water bath for 10 seconds to mix the reaction uniformly, 
-            each 96-well plate was covered with an optical glass to minimize the volatilization of solvent and 
-            components, and two 96-well plates were placed side by side into a home-made aluminum alloy container 
-            (see Supplementary Fig. 6).
-            """
-            # TODO this seems the wrong place... especially the pre-mix step
-            #  alternative --> conditions
-        )
     )
 
     # conditions
     reaction_conditions = ReactionConditions(
-        temperature=TemperatureConditions(setpoint=Temperature(value=298, units=Temperature.TemperatureUnit.KELVIN)),
+        temperature=TemperatureConditions(
+            setpoint=Temperature(value=22, units=Temperature.TemperatureUnit.CELSIUS, precision=5),
+            control=TemperatureConditions.TemperatureControl(
+                type=TemperatureConditions.TemperatureControl.TemperatureControlType.CUSTOM,
+                details=""" two 96-well plates were placed side by side into a home-made aluminum alloy container (see Supplementary Fig. 6). """
+            )
+        ),
         # TODO it is a bit conflicting that Fig. 3a is RT but there is an ice-cooler used in methods
         illumination=IlluminationConditions(
             type=IlluminationConditions.IlluminationType.LED,
             details="100 W LED compact fluorescent lamp (CFL) w",
             color="white",
             distance_to_vessel=Length(value=8, units=Length.LengthUnit.CENTIMETER)
+        ),
+        pressure=PressureConditions(
+            control=PressureConditions.PressureControl(
+                type=PressureConditions.PressureControl.PressureControlType.SEALED,
+                details=""" each 96-well plate was covered with an optical glass to minimize the volatilization of solvent and components """
+            ),
+        ),
+        stirring=StirringConditions(
+            type=StirringConditions.StirringMethodType.SONICATION,
+            details=""" After placing the 96-well plates in ultrasonic water bath for 10 seconds to mix the reaction uniformly, """,
         ),
         conditions_are_dynamic=False,
     )
@@ -296,10 +306,6 @@ def create_reaction(reaction_record) -> Reaction:
                 components=[
                     build_compound(
                         smi="CCN(C(C)C)C(C)C.[Cu+].[I-]",
-                        # TODO WARNING 2024-07-02 23:19:48,935 validations.py:120:
-                        #  Validation error for dataset.pbtxt[1167]:
-                        #  Reaction.workups[3].input.components[0].identifiers[0]:
-                        #  RDKit 2024.03.1 could not validate SMILES identifier CCN(C(C)C)C(C)C.CuI
                         amount=Amount(moles=Moles(value=400 * 1e-3 * 40 * 1e-6, units=Moles.MolesUnit.MOLE)),
                         role=ReactionRole.WORKUP,  # TODO if workup is a reaction what should the role be?
                     ),
@@ -359,39 +365,45 @@ def create_reaction(reaction_record) -> Reaction:
         ),
     ]
 
+    # since peak area was reported for both enantiomers, we need to calculate individual enantiomer peak areas
+    ee_r_percentage = str2percentage(ee)
+    assert ee_r_percentage.value <= 100
+    A_R_r = A_R * (1+ee_r_percentage.value / 100) / 2
+    A_R_s = A_R - A_R_r
+    print(ee_r_percentage.value, A_R_r, A_R_s)
+
     # reaction outcomes
+    product_compounds = []
+    for product_smi, ee_string, peak_area in zip([product_r_smi, product_s_smi], [ee, "-" + ee], [A_R_r, A_R_s]):
+        product_compound = ProductCompound(
+            identifiers=[CompoundIdentifier(type="SMILES", value=product_smi), ],
+            is_desired_product=True,
+            measurements=[
+                ProductMeasurement(
+                    analysis_key="IM-MS",
+                    type=ProductMeasurement.ProductMeasurementType.SELECTIVITY,
+                    uses_internal_standard=True,
+                    percentage=str2percentage(ee_string),
+                    selectivity=ProductMeasurement.Selectivity(
+                        type=ProductMeasurement.Selectivity.SelectivityType.EE,
+                        details=ee_string,
+                    )
+                ),
+                ProductMeasurement(
+                    analysis_key="IM-MS",
+                    type=ProductMeasurement.ProductMeasurementType.AREA,
+                    uses_internal_standard=True,
+                    details="""By adding another alkyne-containing compound 1-phenylprop-2-yn-1-ol (4) as an internal standard, the relative MS yields of different reaction systems could be compared by calculating the relative peakareas of ions (AR = Aproduct/Ainternal standard)""",
+                    float_value=FloatValue(value=peak_area),
+                )
+            ],
+            reaction_role=ReactionRole.ReactionRoleType.PRODUCT
+        )
+        product_compounds.append(product_compound)
+
     outcome = ReactionOutcome(
         reaction_time=Time(value=8, units=Time.TimeUnit.HOUR),
-        products=[
-            ProductCompound(
-                identifiers=[
-                    CompoundIdentifier(type="SMILES", value=product_s_smi),
-                    CompoundIdentifier(type="SMILES", value=product_r_smi),
-                ],
-                is_desired_product=True,
-                measurements=[
-                    ProductMeasurement(
-                        analysis_key="IM-MS",
-                        type=ProductMeasurement.ProductMeasurementType.SELECTIVITY,
-                        uses_internal_standard=True,
-                        # string_value=ee,
-                        selectivity=ProductMeasurement.Selectivity(
-                            type=ProductMeasurement.Selectivity.SelectivityType.EE,
-                            details=ee
-                        )
-                        # TODO is this right way for ee? Also it's s-r
-                    ),
-                    ProductMeasurement(
-                        analysis_key="IM-MS",
-                        type=ProductMeasurement.ProductMeasurementType.AREA,
-                        uses_internal_standard=True,
-                        details="""By adding another alkyne-containing compound 1-phenylprop-2-yn-1-ol (4) as an internal standard, the relative MS yields of different reaction systems could be compared by calculating the relative peakareas of ions (AR = Aproduct/Ainternal standard)""",
-                        float_value=FloatValue(value=A_R),
-                    )
-                ],
-                reaction_role=ReactionRole.ReactionRoleType.PRODUCT
-            )
-        ],
+        products=product_compounds,
         analyses={
             "IM-MS": Analysis(
                 type=Analysis.AnalysisType.MS,
@@ -420,8 +432,6 @@ aux gas flow rate: 10."""
         outcomes=[outcome],
         provenance=ReactionProvenance(
             doi="10.1038/s41467-023-42446-5",
-            # TODO WARNING 2024-07-02 23:24:10,618 validations.py:120: Validation error for dataset.pbtxt[319]:
-            #  Reaction.provenance: DOI should be trimmed (10.1038/s41467-023-42446-5 -> 10.1038/s41467)
             record_created=RecordEvent(
                 time=DateTime(value=datetime.datetime.now(tz=datetime.UTC).strftime("%Y-%m-%d %H:%M:%S %Z")),
                 person=Person(username="qai", name="Qianxiang Ai", email="qai@mit.edu"))
