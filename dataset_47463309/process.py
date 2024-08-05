@@ -444,6 +444,7 @@ if __name__ == '__main__':
     reactions = [create_reaction(r) for r in REACTION_RECORDS]
     dataset = Dataset(
         name="Dataset from `Ultra-high-throughput mapping of the chemical space of asymmetric catalysis enables accelerated reaction discovery`",
+        description="Dataset from `Ultra-high-throughput mapping of the chemical space of asymmetric catalysis enables accelerated reaction discovery`",
         reactions=reactions,
     )
     write_message(dataset, "dataset.pbtxt")
