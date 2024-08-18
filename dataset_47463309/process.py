@@ -16,6 +16,7 @@ COMPOUND_BASE_SMILES = "Cc1cccc(C)n1"  # 2,6-Lutidine
 COMPOUND_SOLVENT_SMILES = "CN(C)C=O"  # DMF
 COMPOUND_INTERNAL_STANDARD_SMILES = "OC(C#C)c1ccccc1"
 COMPOUND_INTERNAL_STANDARD_NAME = "1-phenylprop-2-yn-1-ol"
+COMPOUND_D3_SMILES = "[N-]=[N+]=Nc1ccc(C(=O)OC[C@H](Cc2ccccc2)NC(=O)OCC2c3ccccc3-c3ccccc32)cc1"  # derivatization reactant
 
 REACTION_RECORDS = pd.read_csv('sheet0.csv').to_dict(orient='records')
 REACTION_SMARTS_LHS = "[C:1]#[C:2][C:3][C:4][C:5][C:6][C:7]=[O:8].[c:9]1[c:10][c:11][c:12]([C:13](=[O:14])[C:15]Br)[c:17][c:18]1"
@@ -27,12 +28,16 @@ REACTION_SMARTS_S = REACTION_SMARTS_LHS + ">>" + REACTION_SMARTS_RHS_S
 RXN_R = AllChem.ReactionFromSmarts(REACTION_SMARTS_R)
 RXN_S = AllChem.ReactionFromSmarts(REACTION_SMARTS_S)
 
+REACTION_SMARTS_DERIVATIZATION = "[N-:1]=[N+:2]=[N:3].[C:4]#[C:5]>>[C:4]1=[C:5]-[N:1]=[N:2]-[N:3]1"
+RXN_DERIVATIZATION = AllChem.ReactionFromSmarts(REACTION_SMARTS_DERIVATIZATION)
+
 
 def str2percentage(s: str) -> Percentage:
     assert s.endswith("%")
     if s.startswith("--"):
         s = s.replace("--", "")
     return Percentage(value=float(s.strip("%")))
+
 
 def get_reaction_smiles(p_smi, s_smi, l_smi):
     product_s_mol = RXN_S.RunReactants([MolFromSmiles(COMPOUND_3B_SMILES), MolFromSmiles(s_smi)])[0][0]
@@ -126,7 +131,8 @@ def create_reaction(reaction_record) -> Reaction:
             ),
             build_compound(
                 smi=COMPOUND_SOLVENT_SMILES,
-                amount=Amount(volume=Volume(units=Volume.VolumeUnit.MICROLITER, value=25), volume_includes_solutes=True),
+                amount=Amount(volume=Volume(units=Volume.VolumeUnit.MICROLITER, value=25),
+                              volume_includes_solutes=True),
                 role=ReactionRole.ReactionRoleType.SOLVENT,
             ),
         ],
@@ -285,7 +291,7 @@ def create_reaction(reaction_record) -> Reaction:
             input=ReactionInput(
                 components=[
                     build_compound(
-                        smi="NN=Nc1ccc(C(=O)OC[C@H](Cc2ccccc2)NC(=O)OCC2c3ccccc3-c3ccccc32)cc1",
+                        smi=COMPOUND_D3_SMILES,
                         amount=Amount(moles=Moles(value=150 * 1e-3 * 40 * 1e-6, units=Moles.MolesUnit.MOLE)),
                         role=ReactionRole.WORKUP,  # TODO if workup is a reaction what should the role be?
                     ),
@@ -368,15 +374,21 @@ def create_reaction(reaction_record) -> Reaction:
     # since peak area was reported for both enantiomers, we need to calculate individual enantiomer peak areas
     ee_r_percentage = str2percentage(ee)
     assert ee_r_percentage.value <= 100
-    A_R_r = A_R * (1+ee_r_percentage.value / 100) / 2
+    A_R_r = A_R * (1 + ee_r_percentage.value / 100) / 2
     A_R_s = A_R - A_R_r
     print(ee_r_percentage.value, A_R_r, A_R_s)
 
     # reaction outcomes
     product_compounds = []
-    for product_smi, ee_string, peak_area in zip([product_r_smi, product_s_smi], [ee, "-" + ee], [A_R_r, A_R_s]):
+    for product_smi, ee_string, peak_area, custom_identifier in zip(
+            [product_r_smi, product_s_smi], [ee, "-" + ee], [A_R_r, A_R_s], ["R config", "S config"]
+    ):
         product_compound = ProductCompound(
-            identifiers=[CompoundIdentifier(type="SMILES", value=product_smi), ],
+            identifiers=[
+                CompoundIdentifier(type="SMILES", value=product_smi),
+                CompoundIdentifier(type=CompoundIdentifier.CompoundIdentifierType.CUSTOM, value=custom_identifier,
+                                   details="enantiomer label")
+            ],
             is_desired_product=True,
             measurements=[
                 ProductMeasurement(
@@ -389,6 +401,28 @@ def create_reaction(reaction_record) -> Reaction:
                         details=ee_string,
                     )
                 ),
+            ],
+            reaction_role=ReactionRole.ReactionRoleType.PRODUCT
+        )
+        product_compounds.append(product_compound)
+
+    for product_smi, ee_string, peak_area, custom_identifier in zip(
+            [product_r_smi, product_s_smi], [ee, "-" + ee], [A_R_r, A_R_s],
+            ["R config derivative", "S config derivative"]
+    ):
+        d_product = RXN_DERIVATIZATION.RunReactants((MolFromSmiles(COMPOUND_D3_SMILES), MolFromSmiles(product_smi)))[0][
+            0]
+        d_product_smi = MolToSmiles(d_product)
+        # print(custom_identifier, d_product_smi)
+
+        product_compound = ProductCompound(
+            identifiers=[
+                CompoundIdentifier(type="SMILES", value=d_product_smi),
+                CompoundIdentifier(type=CompoundIdentifier.CompoundIdentifierType.CUSTOM, value=custom_identifier,
+                                   details="enantiomer label")
+            ],
+            is_desired_product=False,
+            measurements=[
                 ProductMeasurement(
                     analysis_key="IM-MS",
                     type=ProductMeasurement.ProductMeasurementType.AREA,
