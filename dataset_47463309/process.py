@@ -119,7 +119,7 @@ def create_reaction(reaction_record) -> Reaction:
     """
      we prepared the reaction components stock solutions as following: S1-S10 (2 M in DMF, 5 mL), 
      L1-L11 (400 mM in DMF, 5 mL), P1-P13 (10 mM in DMF, 5 mL), 3a and 2,6-lutidine mixture (4 M in DMF, 40 mL). 
-     Then combinatorial mixed these components with equal 25 μL to 96-well plates by the automated liquid handing 
+     Then combinatorial mixed these components with equal 25 uL to 96-well plates by the automated liquid handing 
      system.
     """
     reaction_input_s = ReactionInput(
@@ -221,7 +221,7 @@ def create_reaction(reaction_record) -> Reaction:
     reaction_setup = ReactionSetup(
         vessel=Vessel(
             type=Vessel.VesselType.WELL_PLATE,
-            details="450 μL Nunc U96 Microwell, Thermo Scientific",
+            details="450 uL Nunc U96 Microwell, Thermo Scientific",
             preparations=[
                 VesselPreparation(
                     type=VesselPreparation.VesselPreparationType.PURGED,
@@ -268,12 +268,12 @@ def create_reaction(reaction_record) -> Reaction:
     reaction_workups = [
         ReactionWorkup(
             type=ReactionWorkup.ReactionWorkupType.ALIQUOT,
-            details="""4 μL mixture of each reacted solution was collected and diluted with 36 μL ACN""",
+            details="""4 uL mixture of each reacted solution was collected and diluted with 36 uL ACN""",
             amount=Amount(volume=Volume(value=4, units=Volume.VolumeUnit.MICROLITER))
         ),
         ReactionWorkup(
             type=ReactionWorkup.ReactionWorkupType.ADDITION,
-            details="""4 μL mixture of each reacted solution was collected and diluted with 36 μL ACN""",
+            details="""4 uL mixture of each reacted solution was collected and diluted with 36 uL ACN""",
             input=ReactionInput(
                 components=[
                     build_compound(
@@ -352,12 +352,12 @@ def create_reaction(reaction_record) -> Reaction:
         ),
         ReactionWorkup(
             type=ReactionWorkup.ReactionWorkupType.ALIQUOT,
-            details="""After the reaction, 10 μL of supernatant for each reaction was transferred to another 96-well plate""",
+            details="""After the reaction, 10 uL of supernatant for each reaction was transferred to another 96-well plate""",
             amount=Amount(volume=Volume(value=10, units=Volume.VolumeUnit.MICROLITER))
         ),
         ReactionWorkup(
             type=ReactionWorkup.ReactionWorkupType.ADDITION,
-            details="After the reaction, 10 μL of supernatant for each reaction was transferred to another 96-well plate and diluted with 190 μL ACN before the IM-MS analysis",
+            details="After the reaction, 10 uL of supernatant for each reaction was transferred to another 96-well plate and diluted with 190 uL ACN before the IM-MS analysis",
             input=ReactionInput(
                 components=[
                     build_compound(
