@@ -5,13 +5,11 @@ from ord_schema.message_helpers import write_message
 from ord_schema.proto.dataset_pb2 import *
 from ord_schema.proto.reaction_pb2 import *
 
-DATASET_DESCRIPTION = """
-C-H activation of oxazoles from the second demo case in the PyParser paper.
-It is also referred to as the "reaction optimization" campaign.
-Duplicate conditions are found in wells A2/A8, A3/A9, A5/A11 and A6/A12, then again in wells
-C2/C8, C3/C9, C5/C11 and C6/C12. This duplication was done to ensure reproducibility between the
-two 24-well metal heating blocks.
-"""
+DATASET_DESCRIPTION = """C-H activation of oxazoles from the second demo case in the PyParser paper. \
+It is also referred to as the "reaction optimization" campaign. \
+Duplicate conditions are found in wells A2/A8, A3/A9, A5/A11 and A6/A12, then again in wells \
+C2/C8, C3/C9, C5/C11 and C6/C12. This duplication was done to ensure reproducibility between the \
+two 24-well metal heating blocks."""
 
 SMILES_INTERNAL_STD = "c1ccc(CN(Cc2ccccc2)c2ccccc2)cc1"
 SMILES_2 = "Brc1cnc2ccccc2c1"  # this is also the limiting reactant
@@ -61,6 +59,8 @@ def build_reaction(plate_row: str, plate_col_idx: int, corrp_std_4dot1: float, c
     catalyst = CATALYST_INFO[((plate_row_idx - 1) * 12 + plate_col_idx - 1) % 24]
     catalyst_name = catalyst['name']
     catalyst_smi = catalyst['smiles']
+    catalyst_cas = catalyst['cas']
+    catalyst_mdl = catalyst['mdl']
 
     # create identifiers - reaction smiles, file names
     reaction_identifiers = [
@@ -93,16 +93,17 @@ def build_reaction(plate_row: str, plate_col_idx: int, corrp_std_4dot1: float, c
                 role=ReactionRole.ReactionRoleType.CATALYST,
             ),
         ],
+        cat_smiles = ReactionInput.component[0].identifier[2](type= "CAS_NUMBER"),
         addition_order=1,
         texture=Texture(type=Texture.TextureType.SOLID),
+        addition_device=ReactionInput.AdditionDevice(type= 'CUSTOM', details= 'Palladium precatalyst (20 umol was dissolved in 2-methyltetrahydrofuran and diluted to 2 mL. 100 uL of precatalyst solution was dispensed into the vial, and then the solvent was removed in vacuo using the Genevac for 1 h.')
     )
 
-    """
-    Inside a glovebox, a plate of pre-dispensed palladium precatalysts (1 μmol) was taken and tumble
-    stirrer bars were added to each vial. Cesium carbonate (6.5 mg, 20 μmol, 2 eq.) was added by solid
-    addition (aided by a metal transfer template) to rows A and B of the two pre-dispensed plates, and
-    potassium pivalate (2.81 mg, 20 μmol, 2 eq.) was added to rows C and D. The
-    """
+
+    """Inside a glovebox, a plate of pre-dispensed palladium precatalysts (1 μmol) was taken and tumble \
+    stirrer bars were added to each vial. Cesium carbonate (6.5 mg, 20 μmol, 2 eq.) was added by solid \
+    addition (aided by a metal transfer template) to rows A and B of the two pre-dispensed plates, and \
+    potassium pivalate (2.81 mg, 20 μmol, 2 eq.) was added to rows C and D."""
     # TODO technically, stirrer was has addition_order=2...
     reaction_input_base = ReactionInput(
         components=[

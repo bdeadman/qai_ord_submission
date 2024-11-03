@@ -1,98 +1,147 @@
 [
   {
     "name": "cataCXium A Pd G3",
-    "smiles": "CS(=O)(=O)O[Pd]c1ccccc1-c2ccccc2N.CCCCP([C@@]34C[C@@H]5C[C@@H](C[C@@H](C5)C3)C4)[C@@]67C[C@@H]8C[C@@H](C[C@@H](C8)C6)C7"
+    "smiles": "CS(=O)(=O)O[Pd]c1ccccc1-c2ccccc2N.CCCCP([C@@]34C[C@@H]5C[C@@H](C[C@@H](C5)C3)C4)[C@@]67C[C@@H]8C[C@@H](C[C@@H](C8)C6)C7",
+    "cas": "1651823-59-4",
+    "mdl": "MFCD28144563"
   },
   {
     "name": "BrettPhos Pd G3",
-    "smiles": "CS(=O)(O[Pd]c1c(c2c(N)cccc2)cccc1)=O.COc3c(P(C4CCCCC4)C5CCCCC5)c(c6c(C(C)C)cc(C(C)C)cc6C(C)C)c(OC)cc3"
+    "smiles": "CS(=O)(O[Pd]c1c(c2c(N)cccc2)cccc1)=O.COc3c(P(C4CCCCC4)C5CCCCC5)c(c6c(C(C)C)cc(C(C)C)cc6C(C)C)c(OC)cc3",
+    "cas": "1470372-59-8",
+    "mdl": "MFCD22572666"
   },
   {
     "name": "RuPhos Pd G3",
-    "smiles": "CS(=O)(=O)O[Pd]c1ccccc1-c2ccccc2N.CC(C)Oc3cccc(OC(C)C)c3-c4ccccc4P(C5CCCCC5)C6CCCCC6"
+    "smiles": "CS(=O)(=O)O[Pd]c1ccccc1-c2ccccc2N.CC(C)Oc3cccc(OC(C)C)c3-c4ccccc4P(C5CCCCC5)C6CCCCC6",
+    "cas": "1445085-77-7",
+    "mdl": "MFCD22572684"
   },
   {
     "name": "XPhos Pd G3",
-    "smiles": "CC(C1=CC(C(C)C)=C(C2=CC=CC=C2P(C3CCCCC3)C4CCCCC4)C(C(C)C)=C1)C.NC5=C(C=CC=C5)C6=C(C=CC=C6)[Pd]OS(C)(=O)=O"
+    "smiles": "CC(C1=CC(C(C)C)=C(C2=CC=CC=C2P(C3CCCCC3)C4CCCCC4)C(C(C)C)=C1)C.NC5=C(C=CC=C5)C6=C(C=CC=C6)[Pd]OS(C)(=O)=O",
+    "cas": "1445085-55-1",
+    "mdl": "MFCD22666043"
   },
   {
     "name": "4MetBuXPhos Pd G3",
-    "smiles": "O=S(=O)([O-][Pd+2]1([C-]=2C=CC=CC2C=3C=CC=CC3[NH2]1)[P](C4=C(C=5C(=CC(=CC5C(C)C)C(C)C)C(C)C)C(=C(C(=C4C)C)C)C)(C(C)(C)C)C(C)(C)C)C"
+    "smiles": "O=S(=O)([O-][Pd+2]1([C-]=2C=CC=CC2C=3C=CC=CC3[NH2]1)[P](C4=C(C=5C(=CC(=CC5C(C)C)C(C)C)C(C)C)C(=C(C(=C4C)C)C)C)(C(C)(C)C)C(C)(C)C)C",
+    "cas": "1507403-85-1",
+    "mdl": "MFCD28009172"
   },
   {
     "name": "P(t-Bu)3 Pd G4",
-    "smiles": "O=S(=O)([O-][Pd+2]1([C-]=2C=CC=CC2C=3C=CC=CC3[NH]1C)[P](C(C)(C)C)(C(C)(C)C)C(C)(C)C)C"
+    "smiles": "O=S(=O)([O-][Pd+2]1([C-]=2C=CC=CC2C=3C=CC=CC3[NH]1C)[P](C(C)(C)C)(C(C)(C)C)C(C)(C)C)C",
+    "cas": "1621274-11-0",
+    "mdl": "MFCD28411657"
   },
   {
     "name": "SPhos Pd G3",
-    "smiles": "CS(=O)(=O)O[Pd]c1ccccc1-c2ccccc2N.COc3cccc(OC)c3-c4ccccc4P(C5CCCCC5)C6CCCCC6"
+    "smiles": "CS(=O)(=O)O[Pd]c1ccccc1-c2ccccc2N.COc3cccc(OC)c3-c4ccccc4P(C5CCCCC5)C6CCCCC6",
+    "cas": "1445085-82-4",
+    "mdl": "MFCD29472404"
   },
   {
     "name": "BrettPhos Pd G3",
-    "smiles": "CS(=O)(O[Pd]c1c(c2c(N)cccc2)cccc1)=O.COc3c(P(C4CCCCC4)C5CCCCC5)c(c6c(C(C)C)cc(C(C)C)cc6C(C)C)c(OC)cc3"
+    "smiles": "CS(=O)(O[Pd]c1c(c2c(N)cccc2)cccc1)=O.COc3c(P(C4CCCCC4)C5CCCCC5)c(c6c(C(C)C)cc(C(C)C)cc6C(C)C)c(OC)cc3",
+    "cas": "1470372-59-8",
+    "mdl": "MFCD22572666"
   },
   {
     "name": "RuPhos Pd G3",
-    "smiles": "CS(=O)(=O)O[Pd]c1ccccc1-c2ccccc2N.CC(C)Oc3cccc(OC(C)C)c3-c4ccccc4P(C5CCCCC5)C6CCCCC6"
+    "smiles": "CS(=O)(=O)O[Pd]c1ccccc1-c2ccccc2N.CC(C)Oc3cccc(OC(C)C)c3-c4ccccc4P(C5CCCCC5)C6CCCCC6",
+    "cas": "1445085-77-7",
+    "mdl": "MFCD22572684"
   },
   {
     "name": "tBuXPhos Pd G3",
-    "smiles": "CS(=O)(=O)O[Pd]c1ccccc1-c2ccccc2N.CC(C)c3cc(C(C)C)c(c(c3)C(C)C)-c4ccccc4P(C(C)(C)C)C(C)(C)C"
+    "smiles": "CS(=O)(=O)O[Pd]c1ccccc1-c2ccccc2N.CC(C)c3cc(C(C)C)c(c(c3)C(C)C)-c4ccccc4P(C(C)(C)C)C(C)(C)C",
+    "cas": "1447963-75-8",
+    "mdl": "MFCD22666411"
+
   },
   {
     "name": "4MetBuXPhos Pd G3",
-    "smiles": "O=S(=O)([O-][Pd+2]1([C-]=2C=CC=CC2C=3C=CC=CC3[NH2]1)[P](C4=C(C=5C(=CC(=CC5C(C)C)C(C)C)C(C)C)C(=C(C(=C4C)C)C)C)(C(C)(C)C)C(C)(C)C)C"
+    "smiles": "O=S(=O)([O-][Pd+2]1([C-]=2C=CC=CC2C=3C=CC=CC3[NH2]1)[P](C4=C(C=5C(=CC(=CC5C(C)C)C(C)C)C(C)C)C(=C(C(=C4C)C)C)C)(C(C)(C)C)C(C)(C)C)C",
+    "cas": "1507403-85-1",
+    "mdl": "MFCD28009172"
   },
   {
     "name": "P(t-Bu)3 Pd G4",
-    "smiles": "O=S(=O)([O-][Pd+2]1([C-]=2C=CC=CC2C=3C=CC=CC3[NH]1C)[P](C(C)(C)C)(C(C)(C)C)C(C)(C)C)C"
+    "smiles": "O=S(=O)([O-][Pd+2]1([C-]=2C=CC=CC2C=3C=CC=CC3[NH]1C)[P](C(C)(C)C)(C(C)(C)C)C(C)(C)C)C",
+    "cas": "1621274-11-0",
+    "mdl": "MFCD28411657"
   },
   {
     "name": "P(Cy3) Pd G3",
-    "smiles": "CS(=O)(=O)O[Pd]c1ccccc1-c2ccccc2N.C3CCC(CC3)P(C4CCCCC4)C5CCCCC5"
+    "smiles": "CS(=O)(=O)O[Pd]c1ccccc1-c2ccccc2N.C3CCC(CC3)P(C4CCCCC4)C5CCCCC5",
+    "cas": "1445086-12-3",
+    "mdl": "unknown"
   },
   {
     "name": "PEPPSI-IPr",
-    "smiles": "Cl[Pd]Cl.Clc1cccnc1.CC(C)c2cccc(C(C)C)c2N3CN(C=C3)c4c(cccc4C(C)C)C(C)C"
+    "smiles": "Cl[Pd]Cl.Clc1cccnc1.CC(C)c2cccc(C(C)C)c2N3CN(C=C3)c4c(cccc4C(C)C)C(C)C",
+    "cas": "905459-27-0",
+    "mdl": "MFCD08457656"
   },
   {
     "name": "PEPPSI-SIPr",
-    "smiles": "Cl[Pd]Cl.Clc1cccnc1.CC(C)c2cccc(C(C)C)c2N3[CH]N(CC3)c4c(cccc4C(C)C)C(C)C"
+    "smiles": "Cl[Pd]Cl.Clc1cccnc1.CC(C)c2cccc(C(C)C)c2N3[CH]N(CC3)c4c(cccc4C(C)C)C(C)C",
+    "cas": "927706-57-8",
+    "mdl": "unknown"
   },
   {
     "name": "(o-tol)3P Pd G3",
-    "smiles": "O=S(=O)([O-][Pd+2]1([C-]=2C=CC=CC2C=3C=CC=CC3[NH2]1)[P](C=4C=CC=CC4C)(C=5C=CC=CC5C)C=6C=CC=CC6C)C"
+    "smiles": "O=S(=O)([O-][Pd+2]1([C-]=2C=CC=CC2C=3C=CC=CC3[NH2]1)[P](C=4C=CC=CC4C)(C=5C=CC=CC5C)C=6C=CC=CC6C)C",
+    "cas": "1445086-07-6",
+    "mdl": "MFCD29037022"
   },
   {
     "name": "CyJohnPhos Pd G3",
-    "smiles": "O=S(=O)([O-][Pd+2]1([C-]=2C=CC=CC2C=3C=CC=CC3[NH2]1)[P](C=4C=CC=CC4C=5C=CC=CC5)(C6CCCCC6)C7CCCCC7)C"
+    "smiles": "O=S(=O)([O-][Pd+2]1([C-]=2C=CC=CC2C=3C=CC=CC3[NH2]1)[P](C=4C=CC=CC4C=5C=CC=CC5)(C6CCCCC6)C7CCCCC7)C",
+    "cas": "2230788-64-2",
+    "mdl": "MFCD28009175"
   },
   {
     "name": "Pd(dppb)Cl2",
-    "smiles": "Cl[Pd]Cl.C(CCP(c1ccccc1)c2ccccc2)CP(c3ccccc3)c4ccccc4"
+    "smiles": "Cl[Pd]Cl.C(CCP(c1ccccc1)c2ccccc2)CP(c3ccccc3)c4ccccc4",
+    "cas": "29964-62-3",
+    "mdl": "MFCD02093437"
   },
   {
     "name": "tBuBrettPhos Pd G3",
-    "smiles": "COC1=CC=C(C(P(C(C)(C)C)C(C)(C)C)=C1C2=C(C=C(C=C2C(C)C)C(C)C)C(C)C)OC.NC3=C(C=CC=C3)C4=C(C=CC=C4)[Pd]OS(C)(=O)=O"
+    "smiles": "COC1=CC=C(C(P(C(C)(C)C)C(C)(C)C)=C1C2=C(C=C(C=C2C(C)C)C(C)C)C(C)C)OC.NC3=C(C=CC=C3)C4=C(C=CC=C4)[Pd]OS(C)(=O)=O",
+    "cas": "1536473-72-9",
+    "mdl": "MFCD25976528"
   },
   {
     "name": "AdBrettPhos Pd G3",
-    "smiles": "COC1=CC=C(OC)C(C2=C(C(C)C)C=C(C(C)C)C=C2C(C)C)=C1P([C@]34C[C@H]5C[C@H](C[C@H](C5)C4)C3)[C@@]6(C[C@H](C7)C8)CC7C[C@H]8C6.NC9=CC=CC=C9C%10=CC=CC=C%10[Pd]OS(C)(=O)=O"
+    "smiles": "COC1=CC=C(OC)C(C2=C(C(C)C)C=C(C(C)C)C=C2C(C)C)=C1P([C@]34C[C@H]5C[C@H](C[C@H](C5)C4)C3)[C@@]6(C[C@H](C7)C8)CC7C[C@H]8C6.NC9=CC=CC=C9C%10=CC=CC=C%10[Pd]OS(C)(=O)=O",
+    "cas": "1445972-29-1",
+    "mdl": "MFCD27952546"
   },
   {
     "name": "RockPhos Pd G3",
-    "smiles": "CC1=CC=C(OC)C(P(C(C)(C)C)C(C)(C)C)=C1C2=C(C(C)C)C=C(C(C)C)C=C2C(C)C.NC3=CC=CC=C3C4=CC=CC=C4[Pd]OS(C)(=O)=O"
+    "smiles": "CC1=CC=C(OC)C(P(C(C)(C)C)C(C)(C)C)=C1C2=C(C(C)C)C=C(C(C)C)C=C2C(C)C.NC3=CC=CC=C3C4=CC=CC=C4[Pd]OS(C)(=O)=O",
+    "cas": "2009020-38-4",
+    "mdl": "MFCD27952542"
   },
   {
     "name": "SL-J009-1 Pd G3",
-    "smiles": "NC1=C(C=CC=C1)C2=C([Pd]OS(C)(=O)=O)C=CC=C2.C[C@@H](P(C(C)(C)C)C(C)(C)C)[C]3[C](P(C4CCCCC4)C5CCCCC5)[C][C][C]3.[C]6[C][C][C][C]6.[Fe]"
+    "smiles": "NC1=C(C=CC=C1)C2=C([Pd]OS(C)(=O)=O)C=CC=C2.C[C@@H](P(C(C)(C)C)C(C)(C)C)[C]3[C](P(C4CCCCC4)C5CCCCC5)[C][C][C]3.[C]6[C][C][C][C]6.[Fe]",
+    "cas": "1702311-34-9",
+    "mdl": "MFCD27978424"
   },
   {
     "name": "DTBPF-Pd-G3",
-    "smiles": "CS(=O)(=O)O[Pd]c1ccccc1-c1ccccc1N.CC(C)(C)P([C]1[CH][CH][CH][CH]1)C(C)(C)C.CC(C)(C)P([C]2[CH][CH][CH][CH]2)C(C)(C)C"
+    "smiles": "CS(=O)(=O)O[Pd]c1ccccc1-c1ccccc1N.CC(C)(C)P([C]1[CH][CH][CH][CH]1)C(C)(C)C.CC(C)(C)P([C]2[CH][CH][CH][CH]2)C(C)(C)C",
+    "cas": "unknown",
+    "mdl": "MFCD28009169"
   },
   {
     "name": "XantPhos Pd G3",
-    "smiles": "CS(=O)(=O)O[Pd]c1ccccc1-c2ccccc2N.CC3(C)c4cccc(P(c5ccccc5)c6ccccc6)c4Oc7c(cccc37)P(c8ccccc8)c9ccccc9"
+    "smiles": "CS(=O)(=O)O[Pd]c1ccccc1-c2ccccc2N.CC3(C)c4cccc(P(c5ccccc5)c6ccccc6)c4Oc7c(cccc37)P(c8ccccc8)c9ccccc9",
+    "cas": "1445085-97-1",
+    "mdl": "MFCD22572675"
   }
 ]
